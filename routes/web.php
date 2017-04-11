@@ -76,10 +76,7 @@ $users = User::all();
 $events =Event::all();
 $feedbacks=Feedback::all();
 $categories = Category::all();
-
-
-
-
 return view("test", compact('events'));
+});
 
-});                                   
+Route::get('/profile/{id}', 'UserProfileController@index');                                   
