@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Location extends Model
 {
-    
-    public function event() 
+    public function hasevent() 
     {
         return $this->hasMany('App\Event');
     }
 }
+ 

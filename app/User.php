@@ -10,7 +10,7 @@ class User extends Authenticatable
     use Notifiable;
 
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','gender','image'
     ];
 
     protected $hidden = [
@@ -19,13 +19,13 @@ class User extends Authenticatable
 
     public function event() //view
     {
-        return $this->belongsToMany('App\Event', 'event_user','event_id', 'user_id');
+        return $this->belongsToMany('App\Event')->withPivot('event_id','user_id');
     }
 
-    //    public function event() //create
-    // {
-    //     return $this->hasMany('App\Event');
-    // }
+       public function createEvent() //create
+    {
+        return $this->hasMany('App\Event');
+    }
 
 
    public function feedback() //feedback
@@ -35,12 +35,12 @@ class User extends Authenticatable
 
     public function category() 
     {
-        return $this->belongsToMany('App\Category')->withPivot('category_id', 'user_id');
+        return $this->belongsToMany('App\Category')->withPivot('category_id','user_id');
     }
 
-    public function notify() //notify
+    public function eventNotify() //notify
     {
-        return $this->belongsToMany('App\Event','notify_user', 'event_id', 'user_id');
+        return $this->belongsToMany('App\Event','notify_user','event_id','user_id');
     }
 
 }
