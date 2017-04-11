@@ -6,15 +6,56 @@
 	</title>
 </head>
 <body>
+<ul>
+	@foreach($events as $event)
+		<li>{{ $event->location->title }}</li>
+		<li>{{ $event->createEvent->name }}</li>
+	@endforeach
+</ul>
+
+<ul>
+	@foreach($feedbacks as $feedback)
+		<li>{{ $feedback->user->email }}</li>
+	@endforeach
+</ul>
+
+<ul>
+	@foreach($events as $event)
+		@foreach($event->user as $even)
+			<li>{{ $even->gender}}</li>
+		@endforeach
+	@endforeach
+</ul>
 
 
-@foreach($events as $event)
-@foreach($event->userNotify as $user)
-{{$user->gender}}
-@endforeach
-@endforeach
+<ul>
+	@foreach($users as $user)
+		@foreach($user->event as $use)
+			<li>{{ $use->category}}</li>
+		@endforeach
+	@endforeach
+</ul>
 
 
-	
+
+<ul>
+	@foreach($users as $user)
+		@foreach($user->eventNotify as $use)
+			<li>{{ $use->approved}}</li>
+		@endforeach
+	@endforeach
+</ul>
+
+
+
+<ul>
+	@foreach($categories as $category)
+		@foreach($category->user as $cat)
+			<li>{{ $cat->image}}</li>
+		@endforeach
+	@endforeach
+</ul>
+
+
 </body>
-</html>
+</html> 

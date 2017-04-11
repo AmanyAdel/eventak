@@ -16,8 +16,8 @@ class CreateEventsTable extends Migration
             $table->time('start_time');
             $table->time('end_time');
             $table->text('description');
-            $table->text('image');
             $table->integer('category_id')->unsigned();
+            $table->text('image');
             $table->integer("user_id")->unsigned(); //create
             $table->integer("location_id")->unsigned(); 
             $table->enum('approved',['accepted','rejected','waiting']) ;//create

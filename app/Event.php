@@ -6,31 +6,30 @@ use Illuminate\Database\Eloquent\Model;
 
 class Event extends Model
 {
-
+	
     public function user() //view
     {
-        return $this->belongsToMany('App\User', 'event_user','user_id', 'event_id');
+        return $this->belongsToMany('App\User')->withPivot('user_id','event_id'); 
     }
 
-    // public function user() //create
-    // {
-    //     return $this->belongsTo('App\User');
-    // }
+    public function createEvent() //create
+    {
+        return $this->belongsTo('App\User','user_id');
+    }
 
-
-      public function location() //location
+    public function location() //location
     {
         return $this->belongsTo('App\Location');
     }
 
     public function userNotify() //notify
     {
-        return $this->belongsToMany('App\User','notify_user', 'user_id', 'event_id');
+        return $this->belongsToMany('App\User','notify_user','user_id','event_id');
     }
 
-    public function category() //category
+    public function category() // category has event
     {
         return $this->belongsTo('App\Category');
-    } 
+    }
 
 }
